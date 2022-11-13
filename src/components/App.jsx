@@ -13,14 +13,14 @@ const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = ({ name, number }) => {
     const isNameAdded = name.toUpperCase();
 
-    const isAdded = this.state.contacts.find(el => {
-      return (el.name.toUpperCase() === isNameAdded);
+    const isAdded = contacts.find(el => {
+      return ( el.name.toUpperCase() === isNameAdded);
     });
 
     if (isAdded) {
@@ -34,7 +34,7 @@ const App = () => {
       number: number,
     };
 
-    setContacts(prevContacts => [...prevState.contacts, contact]);
+    setContacts(prevContacts => [...prevContacts, contact]);
   }
 
   const deleteContact = e => {
@@ -66,7 +66,7 @@ const App = () => {
         <>
           <Filter value={filter} onChange={filterChange} />
           <ContactList
-            contacts={getContacts}
+            contacts={getContacts()}
             onDeleteContact={deleteContact} />
         </>
       ) : (
